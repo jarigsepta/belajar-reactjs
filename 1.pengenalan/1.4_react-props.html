@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengenalan - React Props</title>
+    <link rel="stylesheet" href="../assets/generic.css">
+</head>
+
+<body>
+    <div class="content">
+        <h2>Pengenalan <em>properties</em> pada komponen React</h2>
+    </div>
+    <div class="content" id="app"></div>
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+    <script type="text/babel">
+        let ColorDisplay = React.createClass({
+        render: function() {
+            var displayStyle = {backgroundColor: '#'+this.props.bgcol};
+            return (
+                <h1 style={displayStyle}>Ganti Warna Latar</h1>
+            );
+        }
+    });
+
+    let PresetButton = React.createClass({
+        handleClick: function (event) {
+            this.props.onColorSelected(this.props.preset);
+        },
+        render: function () {
+            var displayStyle = {backgroundColor: '#'+this.props.preset};
+            return (
+                <button onClick={this.handleClick}>
+                    <i style={displayStyle}>&nbsp;&nbsp;&nbsp;</i> {this.props.preset}</button>
+            );
+        }
+    });
+
+    let TextInput = React.createClass({
+        handleTextInput: function (event) {
+            this.props.onColorSelected(event.target.value);
+        },
+        render: function () {
+            return (
+                <input type="text" onChange={this.handleTextInput} value={this.props.currentColor}/>
+            );
+        }
+    });
+
+    let App = React.createClass({
+			getInitialState: function() {
+				return {color: 'ccc'};
+			},
+			handleColorSelection: function(selectedColor) {
+				this.setState({color: selectedColor});
+			},
+			render: function() {
+				return (
+					<div>
+						<ColorDisplay bgcol={this.state.color}/>
+						<PresetButton preset="c00" onColorSelected={this.handleColorSelection}/>
+						<PresetButton preset="0c0" onColorSelected={this.handleColorSelection}/>
+						<PresetButton preset="00c" onColorSelected={this.handleColorSelection}/>
+						<TextInput onColorSelected={this.handleColorSelection} currentColor={this.state.color}/>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<App/>,
+			document.getElementById('app')
+		);
+    </script>
+
+</body>
+
+</html>
