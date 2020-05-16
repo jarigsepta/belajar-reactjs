@@ -4,15 +4,19 @@ import "./App.css";
 
 // function biasa (component)
 // eslint-disable-next-line
+const Describe = ({ name }) => (
+  <>
+    <p>Hallo {name}</p>
+    <b>Nama saya {name}</b>
+  </>
+);
+// eslint-disable-next-line
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          [Functional Component] Edit <code>src/App.js</code> and save to
-          reload.
-        </p>
+        <Describe name="Johan" />
         <a
           className="App-link"
           href="https://reactjs.org"
