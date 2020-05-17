@@ -12,22 +12,7 @@ const Describe = ({ name }) => (
 );
 // eslint-disable-next-line
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Describe name="Johan" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <AppClass />;
 }
 
 // arrow function (component)
@@ -67,10 +52,13 @@ const Description = ({ nama, alamat }) => (
 );
 // eslint-disable-next-line
 class AppClass extends React.Component {
-  state = {
-    name: "Joko",
-    address: "Surabaya",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "Joko",
+      address: "Surabaya",
+    };
+  }
   render() {
     return (
       <div className="App">
@@ -91,6 +79,6 @@ class AppClass extends React.Component {
   }
 }
 
-// export default App;
+export default App;
 // export default AppArrow;
-export default AppClass;
+// export default AppClass;
